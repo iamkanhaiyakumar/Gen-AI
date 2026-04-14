@@ -13,7 +13,10 @@ csv_loader = DirectoryLoader(
     loader_cls=CSVLoader
 )
 
-docs = loader.load() + csv_loader.load()
-print(len(docs))
-print(docs[325].page_content)
-print(docs[0].metadata)
+docs = list(loader.lazy_load()) + list(csv_loader.lazy_load())
+
+for doc in docs:
+    print(doc.metadata)
+# print(len(docs))
+# print(docs[325].page_content)
+# print(docs[0].metadata)
